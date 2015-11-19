@@ -1,7 +1,9 @@
 Carly, Sam, Christian, Nick, Andy
 
 THIS IS HOW TO RUN OUR STUFF
-g++ main.cpp setLL.cpp setLL.h node.cpp node.h MSetLL.h MSetLL.cpp mapLL.cpp mapLL.h mmapLL.cpp mmapLL.h -std=c++11
+Type in make then ./output
+
+
 
 EXTRA CREDIT THAT WE DID
 —toString for linked lists

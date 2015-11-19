@@ -4,7 +4,7 @@
 using namespace std;
 
 template<typename Type>
-class DArray{
+class DArrayCpCp{
     private:
   
         unsigned long limit; 
@@ -51,13 +51,13 @@ class DArray{
 
 
     public:
-        DArray(){ 
+        DArrayCpCp(){ 
             size = 0;
             limit = 10;
             theData = new Type[limit];
         };
         
-        ~DArray(){ 
+        ~DArrayCpCp(){ 
             delete[] theData;
         };
         int getSize(){
@@ -76,9 +76,9 @@ class DArray{
 
 class MSetArr{
     private:
-    DArray<string> MSArr;
+    DArrayCpCp<string> MSArr;
     public: 
-    DArray<string> getMSArr(){
+    DArrayCpCp<string> getMSArr(){
         return MSArr;
     }
     MSetArr(){

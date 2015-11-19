@@ -3,20 +3,110 @@
 #include "mapLL.h"
 #include "mmapLL.h"
 #include "MapArr.cpp"
-#include "mapHM.cpp"
+#include "mapHM.h"
 #include "MMapArr.cpp"
-#include "mmapHM.cpp"
+#include "mmapHM.h"
 #include "MSetArr.cpp"
-#include "msetHM.cpp"
-#include "setHM.cpp"
+#include "msetHM.h"
+#include "setHM.h"
 #include "SetArr.cpp"
 #include <ctime>
 
-using namespace std;
-//Dynamic array is the fastest for all data structures
-int main() {
-    //g++ main.cpp setLL.cpp setLL.h node.cpp node.h MSetLL.h MSetLL.cpp mapLL.cpp mapLL.h mmapLL.cpp mmapLL.h -std=c++11
+void DynamicArrayExamples(){
+    cout << "The following implementations are done using dynamic array." << endl;
+/********************Set implemented********************/
+    cout << "This is and implementation of Set" << endl;
+    clock_t tStart9 = clock();
+    SetArr novocin;
+    cout<<"Is novocin empty? "<< novocin.is_empty()<<endl;
+    novocin.insert("ah");
+    novocin.insert("ha");
+    novocin.insert("la");
+    cout << "Is ab in novocin? "<< novocin.is_in("ab") << endl;
+    cout << "Is ha in novocin? "<< novocin.is_in("ha") << endl;
+    novocin.rmove("ah");
+    cout << "Is ha in novocin? "<< novocin.is_in("ha") << endl;
     
+    printf("Time taken for SetArr: %.10fs\n", (float)(clock() - tStart9)/CLOCKS_PER_SEC);
+    
+    cout << endl << endl;
+    
+/********************Multiset implemented********************/
+    cout << "This is and implementation of Multiset" << endl;
+    
+    clock_t tStart7 = clock();
+    MSetArr wtf;
+    wtf.insert("ab");
+    wtf.insert("cd");
+    wtf.insert("dd");
+    wtf.insert("ee");
+    wtf.insert("zz");
+    wtf.insert("y");
+    wtf.insert("y");
+    wtf.insert("y");
+    cout << "How many y in wtf? " << wtf.count("y") << endl;
+    cout << "Remove one y " << endl;
+    wtf.rmoveOne("y");
+    cout << "How many y in wtf? " << wtf.count("y") << endl;
+    cout << "Is ab in wtf? " << wtf.is_in("ab") << endl;
+    cout << "Remove all y " << endl;
+    wtf.rmoveAll("y");
+    cout << "How many y in wtf? " << wtf.count("y") << endl;
+    cout << wtf.is_empty() << endl;
+    
+    printf("Time taken for multiset array: %.10fs\n", (float)(clock() - tStart7)/CLOCKS_PER_SEC);
+    
+    cout << endl << endl;
+    
+    
+/********************Map implemented********************/
+    cout << "This is and implementation of Map" << endl;
+    
+    clock_t tStart5 = clock();
+    MapArr maria;
+    maria.set("ah", 1);
+    maria.set("aa", 2);
+    maria.set("cl", 2);
+    maria.set("dl", 2);
+    maria.set("el", 2);
+    maria.set("fl", 2);
+    maria.set("gl", 2);
+    maria.set("hl", 2);
+    maria.set("il", 2);
+    cout << "is ah in maria? " << maria.is_in("ah") << endl;
+    cout << "removing ah" << endl;
+    maria.rmove("ah");
+    cout << "is ah in maria? " << maria.is_in("ah") << endl;
+    cout << "Get aa using [] " << maria["aa"] << endl;
+    cout << "Get il " << maria.get("il") << endl;
+    
+    printf("Time taken for map array: %.10fs\n", (float)(clock() - tStart5)/CLOCKS_PER_SEC);
+    
+    cout << endl << endl;
+    
+/********************Multimap implemented********************/
+    cout << "This is and implementation of Multimap" << endl;    
+    clock_t tStart10 = clock();
+    MMapArr x;
+    x.set("hey", 6);
+    x.set("hey", 7);
+    x.set("hey", 8);
+    x.set("hi", 9);
+    cout << "Count for hey " << x.count("hey") << endl;
+    cout << "Get all for hey " << x.getAll("hey") << endl;
+    cout << "Removing all hey " << endl;
+    x.rmoveall("hey");
+    cout << "Count for hey " << x.count("hey") << endl;
+    printf("Time taken for multimap array: %.10fs\n", (float)(clock() - tStart10)/CLOCKS_PER_SEC);
+    
+    cout << endl << endl;
+   
+
+}
+void LinkedListExamples(){
+    cout << "The following implementations are done using Linked List." << endl;
+/********************Set implemented********************/
+    cout << "This is and implementation of Set" << endl;
     clock_t tStart = clock();
     
     cout << "List 1" << endl;
@@ -44,13 +134,15 @@ int main() {
     list7.toString();
     
     printf("Time taken for setll: %.10fs\n", (float)(clock() - tStart)/CLOCKS_PER_SEC);
-     
+    
     cout << endl << endl;
-
-
-clock_t tStart2 = clock();
-
-    cout<<endl  << "List 2" << endl;
+    
+/********************Set implemented********************/
+    cout << "This is and implementation of Multiset" << endl;    
+    
+    clock_t tStart2 = clock();
+    
+    cout << "List 2" << endl;
     MSetLL list2;
     list2.insert("a1");
     list2.insert("b1");
@@ -75,10 +167,12 @@ clock_t tStart2 = clock();
     printf("Time taken for msetll: %.10fs\n", (float)(clock() - tStart2)/CLOCKS_PER_SEC);
     
     cout << endl << endl;
-    
+
+/********************Map implemented********************/
+    cout << "This is and implementation of Map" << endl;     
     
     clock_t tStart3 = clock();
-    cout << endl << "List 3" << endl;
+    cout << "List 3" << endl;
     mapLL list3;
     list3.set("abc",1);
     list3.set("def",2);
@@ -90,13 +184,16 @@ clock_t tStart2 = clock();
     list3.rmove("jkl");
     list3.toString();
     
-     printf("Time taken for map linked list: %.10fs\n", (float)(clock() - tStart3)/CLOCKS_PER_SEC);
-     
-     cout << endl << endl;
-     
-     clock_t tStart4 = clock();
+    printf("Time taken for map linked list: %.10fs\n", (float)(clock() - tStart3)/CLOCKS_PER_SEC);
     
-    cout << endl << "List 4" << endl;
+    cout << endl << endl;
+    
+/********************Multimap implemented********************/
+    cout << "This is and implementation of Multimap" << endl;    
+    
+    clock_t tStart4 = clock();
+    
+    cout << "List 4" << endl;
     mmapLL list4;
     list4.set("abc",123);
     list4.set("kmno", 456);
@@ -106,181 +203,22 @@ clock_t tStart2 = clock();
     cout << "Count for abc is " << list4.count("abc") << " and the values are: " << endl;
     int *l5int = list4.getAll("abc");
     for(int i = 0; i < list4.count("abc"); i++){
-        cout << *(l5int + i) << " ";
+    cout << *(l5int + i) << " ";
     }
     cout << endl;
     list4.rmoveAll("abc");
     list4.toString();
+    
+    printf("Time taken for mmapLL: %.10fs\n", (float)(clock() - tStart4)/CLOCKS_PER_SEC);
+    
     cout << endl << endl;
+}
+void HashingExamples(){
+    cout << "The following implementations are done using Hashes." << endl;
+/********************Set implemented********************/
+    cout << "This is and implementation of Set" << endl;
     
-     printf("Time taken for mmapLL: %.10fs\n", (float)(clock() - tStart4)/CLOCKS_PER_SEC);
-     
-     cout << endl << endl;
-     
-    //Map implemented with a dynamic array
-    
-     clock_t tStart5 = clock();
-    MapArr maria;
-    maria.set("ah", 1);
-    maria.set("aa", 2);
-    maria.set("cl", 2);
-    maria.set("dl", 2);
-    maria.set("el", 2);
-    maria.set("fl", 2);
-    maria.set("gl", 2);
-    maria.set("hl", 2);
-    maria.set("il", 2);
-    cout << "is ah in maria? " << maria.is_in("ah") << endl;
-    cout << "removing ah" << endl;
-    maria.rmove("ah");
-    cout << "is ah in maria? " << maria.is_in("ah") << endl;
-    cout << "Get aa using [] " << maria["aa"] << endl;
-    cout << "Get il " << maria.get("il") << endl;
-    cout << endl;
-    
-     printf("Time taken for map array: %.10fs\n", (float)(clock() - tStart5)/CLOCKS_PER_SEC);
-     
-     cout << endl << endl;
-    
-    //Map implemented with a hashmap
-    
-    clock_t tStart6 = clock();
-    mapHM andy;
-    andy.set("ah", 1);
-    andy.set("aa", 2);
-    andy.set("cl", 2);
-    andy.set("dl", 2);
-    andy.set("el", 2);
-    andy.set("hl", 2);
-    andy.set("il", 2);
-    maria.set("as", 2);
-    cout << "Removing aa " << endl;
-    maria.rmove("aa");
-    cout << "Is aa in andy? " << andy.is_in("aa") << endl;
-    cout << "Get value for cl " << andy.get("cl") << endl;
-    cout << "Get value for cl with [] " << andy.get("cl") << endl;
-    
-     printf("Time taken for map hashmap: %.10fs\n", (float)(clock() - tStart6)/CLOCKS_PER_SEC);
-     
-     cout << endl << endl;
-    
-    
-    //Multiset implemented with a dynamic array
-     
-     clock_t tStart7 = clock();
-     MSetArr wtf;
-     wtf.insert("ab");
-     wtf.insert("cd");
-     wtf.insert("dd");
-     wtf.insert("ee");
-     wtf.insert("zz");
-     wtf.insert("y");
-     wtf.insert("y");
-     wtf.insert("y");
-     cout << "How many y in wtf? " << wtf.count("y") << endl;
-     cout << "Remove one y " << endl;
-     wtf.rmoveOne("y");
-     cout << "How many y in wtf? " << wtf.count("y") << endl;
-     cout << "Is ab in wtf? " << wtf.is_in("ab") << endl;
-     cout << "Remove all y " << endl;
-     wtf.rmoveAll("y");
-     cout << "How many y in wtf? " << wtf.count("y") << endl;
-     cout << wtf.is_empty() << endl;
-     
-      printf("Time taken for multiset array: %.10fs\n", (float)(clock() - tStart7)/CLOCKS_PER_SEC);
-     
-     cout << endl << endl;
-    //Multiset implemented with a hashmap
-    
-    clock_t tStart8 = clock();
-    msetHM b;
-    b.insert("ah");
-    b.insert("ah");
-    b.insert("ac");
-    b.insert("ad");
-    cout << "Is ah in b? " << b.is_in("ah") << endl;
-    cout << "Is zz in b? " << b.is_in("zz") << endl;
-    cout << "Draw a random from b " << b.draw_random() << endl;
-    cout << "Is b empty? " << b.is_empty() << endl;
-    cout << "How many times is ah in b? " << b.count("ah") << endl;
-    cout << "Remove all ah " << endl;
-    b.rmoveAll("ah");
-    cout << "How many times is ah in b now? " << b.count("ah") << endl;
-    cout << "Remove ac " << endl;
-    b.rmoveOne("ac");
-    cout << "Is ac in b still? " << b.is_in("ac") << endl;
-    
-      printf("Time taken for msetHM: %.10fs\n", (float)(clock() - tStart8)/CLOCKS_PER_SEC);
-      
-      cout << endl << endl;
-    
-    
-    //Set implemented with a dynamic array
-     clock_t tStart9 = clock();
-     SetArr novocin;
-     cout<<"Is novocin empty? "<< novocin.is_empty()<<endl;
-     novocin.insert("ah");
-     novocin.insert("ha");
-     novocin.insert("la");
-     cout << "Is ab in novocin? "<< novocin.is_in("ab") << endl;
-     cout << "Is ha in novocin? "<< novocin.is_in("ha") << endl;
-    novocin.rmove("ah");
-    cout << "Is ha in novocin? "<< novocin.is_in("ha") << endl;
-     
-     printf("Time taken for SetArr: %.10fs\n", (float)(clock() - tStart9)/CLOCKS_PER_SEC);
-     
-     cout << endl << endl;
-     //Set dynamic array is the fastest so far
-     
-     clock_t tStart10 = clock();
-     MMapArr x;
-     x.set("hey", 6);
-     x.set("hey", 7);
-     x.set("hey", 8);
-     x.set("hi", 9);
-     cout << "Count for hey " << x.count("hey") << endl;
-    cout << "Get all for hey " << x.getAll("hey") << endl;
-    cout << "Removing all hey " << endl;
-    x.rmoveall("hey");
-    cout << "Count for hey " << x.count("hey") << endl;
-      printf("Time taken for multimap array: %.10fs\n", (float)(clock() - tStart10)/CLOCKS_PER_SEC);
-      
-      cout << endl << endl;
-     
-     
-     //Multimap implemented with a hashmap
-     
-      clock_t tStart11 = clock();
-     cout << endl << endl;
-    mmapHM u;
-    u.set("ah", 1);
-    u.set("ah", 3);
-    u.set("ah", 4);
-    u.set("ah", 5);
-    u.set("ah", 5);
-    u.set("ah", 6);
-    u.set("ah", 7);
-    u.set("ah", 1);
-    u.set("ah", 3);
-    u.set("ah", 6);
-    u.set("ah", 7);
-    u.set("yay", 12);
-    cout << "count all the ah " << u.count("ah") << endl;
-    cout << "Get all ah's " << u.getAll("ah") << endl;
-    cout << "Remove one ah, 3 " << endl;
-    u.removeOnePair("ah", 3); 
-    cout << "count all the ah " << u.count("ah") << endl;
-    cout << "Remove all ah's " << endl;
-    u.rmoveAll("cl");
-    cout << "count all the ah " << u.count("ah") << endl;
-    
-      printf("Time taken for mmapHM: %.10fs\n", (float)(clock() - tStart11)/CLOCKS_PER_SEC);
-      
-      cout << endl << endl;
-    
-    //Set implemented with a hashmap
-    
-     clock_t tStart12 = clock();
+    clock_t tStart12 = clock();
     setHM r;
     r.insert("a");
     r.insert("b");
@@ -309,7 +247,95 @@ clock_t tStart2 = clock();
     cout << "Is z in kj? " << kj.is_in("z") << endl;
     cout << "Is kj empty? " << kj.is_empty() << endl;
     
-       printf("Time taken for setHM: %.10fs\n", (float)(clock() - tStart12)/CLOCKS_PER_SEC);
+    printf("Time taken for setHM: %.10fs\n", (float)(clock() - tStart12)/CLOCKS_PER_SEC);
+    
+
+    cout << endl << endl;
+/********************Multiset implemented********************/
+    cout << "This is and implementation of Multiset" << endl;    
+    
+    clock_t tStart8 = clock();
+    msetHM b;
+    b.insert("ah");
+    b.insert("ah");
+    b.insert("ac");
+    b.insert("ad");
+    cout << "Is ah in b? " << b.is_in("ah") << endl;
+    cout << "Is zz in b? " << b.is_in("zz") << endl;
+    cout << "Draw a random from b " << b.draw_random() << endl;
+    cout << "Is b empty? " << b.is_empty() << endl;
+    cout << "How many times is ah in b? " << b.count("ah") << endl;
+    cout << "Remove all ah " << endl;
+    b.rmoveAll("ah");
+    cout << "How many times is ah in b now? " << b.count("ah") << endl;
+    cout << "Remove ac " << endl;
+    b.rmoveOne("ac");
+    cout << "Is ac in b still? " << b.is_in("ac") << endl;
+    
+    printf("Time taken for msetHM: %.10fs\n", (float)(clock() - tStart8)/CLOCKS_PER_SEC);
+    
+    cout << endl << endl;
+    
+/********************Map implemented********************/
+    cout << "This is and implementation of Map" << endl;
+    
+    clock_t tStart6 = clock();
+    mapHM andy;
+    andy.set("ah", 1);
+    andy.set("aa", 2);
+    andy.set("cl", 2);
+    andy.set("dl", 2);
+    andy.set("el", 2);
+    andy.set("hl", 2);
+    andy.set("il", 2);
+    //maria.set("as", 2);
+    cout << "Removing aa " << endl;
+    //maria.rmove("aa");
+    cout << "Is aa in andy? " << andy.is_in("aa") << endl;
+    cout << "Get value for cl " << andy.get("cl") << endl;
+    cout << "Get value for cl with [] " << andy.get("cl") << endl;
+    
+    printf("Time taken for map hashmap: %.10fs\n", (float)(clock() - tStart6)/CLOCKS_PER_SEC);
+    
+    cout << endl << endl;
+    
+    
+/********************Multimap implemented********************/
+    cout << "This is and implementation of Multimap" << endl;
+    
+    clock_t tStart11 = clock();
+    mmapHM u;
+    u.set("ah", 1);
+    u.set("ah", 3);
+    u.set("ah", 4);
+    u.set("ah", 5);
+    u.set("ah", 5);
+    u.set("ah", 6);
+    u.set("ah", 7);
+    u.set("ah", 1);
+    u.set("ah", 3);
+    u.set("ah", 6);
+    u.set("ah", 7);
+    u.set("yay", 12);
+    cout << "count all the ah " << u.count("ah") << endl;
+    cout << "Get all ah's " << u.getAll("ah") << endl;
+    cout << "Remove one ah, 3 " << endl;
+    u.removeOnePair("ah", 3); 
+    cout << "count all the ah " << u.count("ah") << endl;
+    cout << "Remove all ah's " << endl;
+    u.rmoveAll("cl");
+    cout << "count all the ah " << u.count("ah") << endl;
+    
+    printf("Time taken for mmapHM: %.10fs\n", (float)(clock() - tStart11)/CLOCKS_PER_SEC);
+    
+    cout << endl << endl;
+}
+
+int main() {
+
+    DynamicArrayExamples();
+    LinkedListExamples();
+    HashingExamples();
     
     return 0;
 }
